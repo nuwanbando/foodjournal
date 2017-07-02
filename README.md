@@ -64,3 +64,7 @@ the response wood look like:
 ```
 
 Currently there are some JSON parsing issues, which is reported at ballerinalang
+
+The ballerina sequence for the above is like:
+
+![Image of ballerina script](https://raw.githubusercontent.com/nuwanbando/foodjournal/master/foodlog.svg)
