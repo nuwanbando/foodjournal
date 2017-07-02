@@ -18,3 +18,11 @@ Cache-Control: no-cache
 	"dinner":"pizza"
 }
 ```
+
+to read the journal entries you can,
+
+```
+GET /foodlog/log/{limit} HTTP/1.1
+Host: localhost:9090
+Cache-Control: no-cache
+```
