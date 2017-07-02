@@ -119,13 +119,10 @@ function readLog(string limit) (json){
     datatable dt = sql:ClientConnector.select(foodlog, "select * from log ORDER BY id DESC LIMIT ?", params);
     var logObj,err = <json>dt;
     
-    json p = {};
-    datatables:close(dt);
-    
-    foodlog.close();
-    
     json results = {};
     jsons:addToObject(results, "$", "results", logObj);
+    datatables:close(dt);
+    foodlog.close();
 
     return results;
 }
