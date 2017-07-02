@@ -2,6 +2,7 @@ import ballerina.net.http;
 import ballerina.lang.messages;
 import ballerina.lang.system;
 import ballerina.lang.jsons;
+
 import ballerina.data.sql;
 import ballerina.lang.time;
 import ballerina.lang.datatables;
@@ -13,7 +14,7 @@ service<http> FoodLog {
     @http:Path { value: "/log/{limit}"}
     resource Resource1 (message m, @http:PathParam{value:"limit"} string limit) {
         json results = readLog(limit);
-        system:print("GET called");
+        system:println("GET called");
         message response = {};
         messages:setJsonPayload(response, results);
         reply response;
@@ -22,6 +23,7 @@ service<http> FoodLog {
     @http:POST {}
     @http:Path { value: "/log"}
     resource log (message m) {
+        system:println("POST called");
         //format: https://api.nutritionix.com/v1_1/search/cheddar%20cheese?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=[YOURID]&appKey=[YOURKEY]
         string nutritionixURL = "https://api.nutritionix.com/v1_1/search/";
         string appId = "0df5f4a4";
@@ -115,19 +117,15 @@ function readLog(string limit) (json){
     params = [para1];
     
     datatable dt = sql:ClientConnector.select(foodlog, "select * from log ORDER BY id DESC LIMIT ?", params);
-    var jsonRes,err = <json>dt;
+    var logObj,err = <json>dt;
     
-    system:println(jsonRes);
-    
+    json p = {};
     datatables:close(dt);
     
-    system:log(4,"db records selected");
     foodlog.close();
+    
+    json results = {};
+    jsons:addToObject(results, "$", "results", logObj);
 
-    return jsonRes[0].log;
-}
-
-struct logEntry {
-    int id;
-    json log;
+    return results;
 }
