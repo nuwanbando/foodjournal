@@ -1,4 +1,4 @@
-# foodjournal
+# Bandos' Food Journal Project
 
 This is a sample food journal project done by ballerinalang.
 
