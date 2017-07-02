@@ -67,5 +67,5 @@ Currently there are some JSON parsing issues, which is reported at ballerinalang
 
 The ballerina sequence for the above is like:
 
-![Alt text](https://raw.githubusercontent.com/nuwanbando/foodjournal/master/foodlog.svg)
-<img src="https://raw.githubusercontent.com/nuwanbando/foodjournal/master/foodlog.svg">
+![Alt text](https://cdn.rawgit.com/nuwanbando/foodjournal/master/foodlog.svg)
+
